@@ -62,6 +62,8 @@ YOLOv9 ROS TensorRT: https://github.com/WongKinYiu/yolov9/issues/145#issue-21642
 
 YOLOv9 Julia: https://github.com/WongKinYiu/yolov9/issues/141#issuecomment-1973710107
 
+YOLOv9 MLX: https://github.com/WongKinYiu/yolov9/issues/258#issue-2190586540
+
 YOLOv9 ByteTrack: https://github.com/WongKinYiu/yolov9/issues/78#issue-2153512879
 
 YOLOv9 DeepSORT: https://github.com/WongKinYiu/yolov9/issues/98#issue-2156172319
@@ -242,9 +244,10 @@ Parts of code of [YOLOR-Based Multi-Task Learning](https://arxiv.org/abs/2309.16
 python train.py --workers 8 --device 0 --batch 32 --data data/coco.yaml --img 640 --cfg models/detect/gelan-c.yaml --weights '' --name gelan-c-det --hyp hyp.scratch-high.yaml --min-items 0 --epochs 300 --close-mosaic 10
 ```
 
-| Model | Test Size | AP<sup>box</sup> |
-| :-- | :-: | :-: |
-| [**GELAN-C-DET**]() | 640 | **52.3%** |
+| Model | Test Size | Param. | FLOPs | AP<sup>box</sup> |
+| :-- | :-: | :-: | :-: | :-: |
+| [**GELAN-C-DET**](https://github.com/WongKinYiu/yolov9/releases/download/v0.1/gelan-c-det.pt) | 640 | 25.3M | 102.1G |**52.3%** |
+| [**YOLOv9-C-DET**]() | 640 | 25.3M | 102.1G | **53.0%** |
 
 #### Instance Segmentation
 
@@ -258,9 +261,10 @@ python train.py --workers 8 --device 0 --batch 32 --data data/coco.yaml --img 64
 python segment/train.py --workers 8 --device 0 --batch 32  --data coco.yaml --img 640 --cfg models/segment/gelan-c-seg.yaml --weights '' --name gelan-c-seg --hyp hyp.scratch-high.yaml --no-overlap --epochs 300 --close-mosaic 10
 ```
 
-| Model | Test Size | AP<sup>box</sup> | AP<sup>mask</sup>  |
-| :-- | :-: | :-: | :-: |
-| [**GELAN-C-SEG**]() | 640 | **52.3%** | **42.4%** |
+| Model | Test Size | Param. | FLOPs | AP<sup>box</sup> | AP<sup>mask</sup>  |
+| :-- | :-: | :-: | :-: | :-: | :-: |
+| [**GELAN-C-SEG**](https://github.com/WongKinYiu/yolov9/releases/download/v0.1/gelan-c-seg.pt) | 640 | 27.4M | 144.6G | **52.3%** | **42.4%** |
+| [**YOLOv9-C-SEG**]() | 640 | 27.4M | 145.5G | **53.3%** | **43.5%** |
 
 #### Panoptic Segmentation
 
@@ -276,15 +280,16 @@ python segment/train.py --workers 8 --device 0 --batch 32  --data coco.yaml --im
 python panoptic/train.py --workers 8 --device 0 --batch 32  --data coco.yaml --img 640 --cfg models/panoptic/gelan-c-pan.yaml --weights '' --name gelan-c-pan --hyp hyp.scratch-high.yaml --no-overlap --epochs 300 --close-mosaic 10
 ```
 
-| Model | Test Size | AP<sup>box</sup> | AP<sup>mask</sup>  | mIoU<sub>164k</sub><sup>semantic</sup> | mIoU<sup>stuff</sup> | PQ<sup>panoptic</sup> |
-| :-- | :-: | :-: | :-: | :-: | :-: | :-: |
-| [**GELAN-C-PAN**](https://github.com/WongKinYiu/yolov9/releases/download/v0.1/gelan-c-pan.pt) | 640 | **52.6%** | **42.5%** | **39.0** | **52.7%** | **-** |
+| Model | Test Size | Param. | FLOPs | AP<sup>box</sup> | AP<sup>mask</sup>  | mIoU<sub>164k/10k</sub><sup>semantic</sup> | mIoU<sup>stuff</sup> | PQ<sup>panoptic</sup> |
+| :-- | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| [**GELAN-C-PAN**](https://github.com/WongKinYiu/yolov9/releases/download/v0.1/gelan-c-pan.pt) | 640 | 27.6M | 146.7G | **52.6%** | **42.5%** | **39.0%/48.3%** | **52.7%** | **39.4%** |
+<!--| [**YOLOv9-C-PAN**]() | 640 | 28.8M | 187.0G | **%** | **%** | **** | **%** | **%** |-->
 
 #### Image Captioning (not yet released)
 
 <!--[`gelan-c-cap.pt`]()-->
 
-<!--`object detection` `instance segmentation` `semantic segmentation` `stuff segmentation` `panoptic segmentation` `image captioning`-->
+`object detection` `instance segmentation` `semantic segmentation` `stuff segmentation` `panoptic segmentation` `image captioning`
 
 ``` shell
 # coco/labels/{split}/*.txt
@@ -296,9 +301,11 @@ python panoptic/train.py --workers 8 --device 0 --batch 32  --data coco.yaml --i
 python caption/train.py --workers 8 --device 0 --batch 32  --data coco.yaml --img 640 --cfg models/caption/gelan-c-cap.yaml --weights '' --name gelan-c-cap --hyp hyp.scratch-high.yaml --no-overlap --epochs 300 --close-mosaic 10
 ```
 
-<!--| Model | Test Size | AP<sup>box</sup> | AP<sup>mask</sup>  | mIoU<sup>semantic</sup>  | mIoU<sup>stuff</sup> | PQ<sup>panoptic</sup> | B@4<sup>caption</sup> |
-| :-- | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| [**GELAN-C-CAP**]() | 640 | **-** | **-** | **-** | **-** | **-** | **-** |-->
+| Model | Test Size | AP<sup>box</sup> | AP<sup>mask</sup>  | mIoU<sup>semantic</sup>  | mIoU<sup>stuff</sup> | PQ<sup>panoptic</sup> | BLEU@4<sup>caption</sup> | CIDEr<sup>caption</sup> |
+| :-- | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| [**YOLOR-MT**]() | 640 | **51.0%** | **41.7%** | **49.6%** | **55.9%** | **40.5%** | **35.7** | **112.7** |
+<!--| [**GELAN-C-CAP**]() | 640 | **-** | **-** | **-** | **-** | **-** | **-** | **-** |
+| [**YOLOv9-C-CAP**]() | 640 | **-** | **-** | **-** | **-** | **-** | **-** | **-** |-->
 
 
 ## Acknowledgements
