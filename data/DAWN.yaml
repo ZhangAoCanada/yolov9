@@ -1,7 +1,7 @@
-path: /home/za/Documents/DAWN/DAWN/  # dataset root dir
-train: DAWN.txt  # train images (relative to 'path') 118287 images
-val: DAWN.txt  # val images (relative to 'path') 5000 images
-test: DAWN.txt  # 20288 of 40670 images, submit to https://competitions.codalab.org/competitions/20794
+path: /dataset/public/DAWN_coco  # dataset root dir
+train: train.txt  # train images (relative to 'path') 118287 images
+val: test.txt  # val images (relative to 'path') 5000 images
+test: test.txt  # 20288 of 40670 images, submit to https://competitions.codalab.org/competitions/20794
 
 # Classes
 names:

@@ -1,0 +1,3 @@
+python train_dual2.py --workers 8 --device 0 --batch 12 --data data/DAWN2.yaml --img 640 --cfg models/detect/yolov9-e.yaml --weights 'weights/yolov9-e.pt' --name yolov9-e2-scratch --hyp hyp.scratch-high.yaml --min-items 0 --epochs 1000 --close-mosaic 15
+# python train_dual.py --workers 8 --device 0 --batch 12 --data data/DAWN2.yaml --img 640 --cfg models/detect/yolov9-e.yaml --weights '' --name yolov9-e2-scratch --hyp hyp.scratch-high.yaml --min-items 0 --epochs 1000 --close-mosaic 15
+# python train_dual.py --workers 8 --device 1 --batch 12 --data data/DAWN2.yaml --img 640 --cfg models/detect/yolov9-e.yaml --weights 'weights/yolov9-e.pt' --name yolov9-e2 --hyp hyp.scratch-high.yaml --min-items 0 --epochs 1000 --close-mosaic 15

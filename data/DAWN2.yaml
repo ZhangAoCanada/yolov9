@@ -1,0 +1,16 @@
+path: /dataset/public/DAWN_coco  # dataset root dir
+train: train.txt  # train images (relative to 'path') 118287 images
+val: test.txt  # val images (relative to 'path') 5000 images
+test: test.txt  # 20288 of 40670 images, submit to https://competitions.codalab.org/competitions/20794
+
+# Classes
+names:
+  0: person
+  1: bicycle
+  2: car
+  3: motorcycle
+  4: airplane
+  5: bus
+  6: train
+  7: truck
+  
